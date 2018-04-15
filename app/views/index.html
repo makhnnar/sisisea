@@ -1,0 +1,259 @@
+<html>
+	<head>
+		<title>SISISEA</title>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  		<!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+  		<link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  		<link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+		<script src="../js/chart.min.js"></script>
+		<script src="../js/utils.js"></script>
+		<script type="text/javascript" src="../js/jquery2.1.1.min.js"></script>
+  		<script type="text/javascript" src="../js/materialize.js"></script>
+  		<script type="text/javascript" src="../js/init.js"></script>
+		<!--<style>
+    		canvas{
+        		-moz-user-select: none;
+        		-webkit-user-select: none;
+        		-ms-user-select: none;
+    		}
+    	</style>-->
+	</head>
+	<body>
+		<div class="row">
+			<div class="col s1"></div>
+			<div class="input-field col s4">
+        		<label></label>
+        		<select id="tipo_modulacion">
+      				<option value="1" selected>FM</option>
+      				<option value="2">PM</option>
+    			</select>	
+        	</div>
+        </div>
+
+        <div class="row">
+			<div class="col s3"></div>
+			<div class="col s6 center">
+        		<h3>SEÑAL PORTADORA</h3>	
+        	</div>
+        	<div class="col s3"></div>
+        </div>
+
+		<div class="row">
+			<div clas="container">
+          		<div class="section">
+          			<div class="col s1"></div>
+        			<div class="col s10">
+        				<canvas id="canvas_portadora"></canvas>
+        			</div>
+        			<div class="col s1"></div>
+        		</div>
+        	</div>
+        </div>
+
+        <div class="row">
+        	
+        	<div class="col s1"></div>
+        	
+        	<div class="input-field col s3">
+        		
+          		<input id="amplitud_c" type="number" class="validate">
+          		<label for="amplitud_c" data-error="wrong" data-success="right" class="black-text text-darken-2">Amplitud Portadora (V)</label>
+
+        	</div>
+
+        	<div class="input-field col s3">
+        		
+          		<input id="frecuencia_c" type="number" class="validate">
+          		<label for="frecuencia_c" data-error="wrong" data-success="right" class="black-text text-darken-2">Frecuencia Portadora (Hz)</label>
+
+        	</div>
+        	
+        	<div class="input-field col s4">
+        		<label></label>
+        		<select id="t_portadora">
+      				<option value="1" selected>SENO</option>
+      				<option value="2">COSENO</option>
+      				<option value="3">TRIANGULAR</option>
+      				<option value="4">SIERRA</option>
+    			</select>		
+
+        	</div>
+        	
+        	<div class="col s1"></div>
+        
+        </div>
+
+        <div class="row">
+			
+			<div class="col s1"></div>
+
+        	<div class="input-field col s3">
+        		
+          		<input value="0" id="t_inicial_por" type="number" class="validate">
+          		<label for="t_inicial_por" data-error="wrong" data-success="right" class="black-text text-darken-2">Tiempo Inicial Portadora (s)</label>
+
+        	</div>
+
+        	<div class="input-field col s3">
+        		
+          		<input value="0.5" id="t_final_por" type="number" class="validate">
+          		<label for="t_final_por" data-error="wrong" data-success="right" class="black-text text-darken-2">Tiempo Final Portadora (s)</label>
+
+        	</div>
+
+
+        	<div class="col s4 center">
+        		
+          		<a id="btn_portadora" class="waves-effect waves-light btn">Graficar Portadora</a>
+
+        	</div>
+
+			<div class="col s1"></div>
+
+        </div>
+		
+		<div class="row">
+			<div class="col s3"></div>
+			<div class="col s6 center">
+        		<h3>SEÑAL MODULADORA</h3>	
+        	</div>
+        	<div class="col s3"></div>
+        </div>
+
+        <div class="row">
+			<div clas="container">
+          		<div class="section">
+          			<div class="col s1"></div>
+        			<div class="col s10">
+        				<canvas id="canvas_moduladora"></canvas>
+        			</div>
+        			<div class="col s1"></div>
+        		</div>
+        	</div>
+        </div>
+
+        <div class="row">
+        	
+        	<div class="col s1"></div>
+        	
+        	<div class="input-field col s3">
+        		
+          		<input id="amplitud_m" type="number" class="validate">
+          		<label for="amplitud_m" data-error="wrong" data-success="right" class="black-text text-darken-2">Amplitud Moduladora (V)</label>
+
+        	</div>
+
+        	<div class="input-field col s3">
+        		
+          		<input id="frecuencia_m" type="number" class="validate">
+          		<label for="frecuencia_m" data-error="wrong" data-success="right" class="black-text text-darken-2">Frecuencia Moduladora (Hz)</label>
+
+        	</div>
+        	
+        	<div class="input-field col s4">
+        		<label></label>
+        		<select id="t_moduladora">
+      				<option value="1" selected>SENO</option>
+      				<option value="2">COSENO</option>
+      				<option value="3">TRIANGULAR</option>
+      				<option value="4">SIERRA</option>
+    			</select>	
+
+        	</div>
+        	
+        	<div class="col s1"></div>
+
+        </div>
+
+		
+        <div class="row">
+			
+			<div class="col s1"></div>
+
+        	<div class="input-field col s3">
+        		
+          		<input value="0" id="t_inicial_mod" type="number" class="validate">
+          		<label for="t_inicial_mod" data-error="wrong" data-success="right" class="black-text text-darken-2">Tiempo Inicial Moduladora</label>
+
+        	</div>
+
+        	<div class="input-field col s3">
+        		
+          		<input value="0.5" id="t_final_mod" type="number" class="validate">
+          		<label for="t_final_mod" data-error="wrong" data-success="right" class="black-text text-darken-2">Tiempo Final Moduladora</label>
+
+        	</div>
+
+        	<div class="col s4 center">
+        		
+          		<a id="btn_moduladora" class="waves-effect waves-light btn">Graficar Moduladora</a>
+
+        	</div>
+
+			<div class="col s1"></div>
+
+        </div>
+		
+		<div class="row">
+			<div class="col s3"></div>
+			<div class="col s6 center">
+        		<h3>SEÑAL MODULADA</h3>	
+        	</div>
+        	<div class="col s3"></div>
+        </div>
+		
+		<div class="row">
+			<div clas="container">
+          		<div class="section">
+          			<div class="col s1"></div>
+        			<div class="col s10">
+        				<canvas id="canvas_resultado"></canvas>
+        			</div>
+        			<div class="col s1"></div>
+        		</div>
+        	</div>
+        </div>
+		
+		<div class="row">
+			
+			<div class="col s1"></div>
+
+        	<div class="input-field col s2">
+        		
+          		<input value="0" id="t_inicial_res" type="number" class="validate">
+          		<label for="t_inicial_res" data-error="wrong" data-success="right" class="black-text text-darken-2">Tiempo Inicial</label>
+
+        	</div>
+
+        	<div class="input-field col s2">
+        		
+          		<input value="0.5" id="t_final_res" type="number" class="validate">
+          		<label for="t_final_res" data-error="wrong" data-success="right" class="black-text text-darken-2">Tiempo Final</label>
+
+        	</div>
+
+        	<div class="input-field col s2">
+        		
+          		<input value="1" id="ind_mod_res" type="number" class="validate">
+          		<label for="ind_mod_res" data-error="wrong" data-success="right" class="black-text text-darken-2">Indice de Modulación</label>
+
+        	</div>
+
+        	<div class="col s4 center">
+        		
+          		<a id="btn_resultado" class="waves-effect waves-light btn">Modular Señal</a>
+
+        	</div>
+
+			    <div class="col s1"></div>
+
+    </div>
+
+		<script type="text/javascript" src="../js/main.js"></script>
+
+   	</body>
+
+</html>
